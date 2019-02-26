@@ -17,9 +17,8 @@ global model, graph
 
 model, graph = init()
 
-# 把图像转换解码
 def convertImage(imgData1):
-   imgstr = re.search(b'base64,(.*)',imgData1).group(1) # 匹配第一个括号
+   imgstr = re.search(b'base64,(.*)',imgData1).group(1)
    with open('output.png','wb') as output:
        output.write(base64.b64decode(imgstr))
 
@@ -30,7 +29,6 @@ def index():
 
 @app.route('/predict/',methods=['GET','POST'])
 def predict():
-	# 预测数字,从web 画笔框
 	imgData = request.get_data()
 	convertImage(imgData)
 
